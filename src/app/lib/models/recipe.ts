@@ -11,4 +11,4 @@ const RecipeSchema: Schema<Irecipe>=new Schema({
 })
 
 const Recipe :Model<Irecipe> =mongoose.models.Recipe || mongoose.model<Irecipe>('Recipe',RecipeSchema)
- export default Recipe;
+export default Recipe;
