@@ -22,6 +22,7 @@ export default interface irecipe extends Document{
     instructions:string;
     favorite:boolean;
 }
+// export interface ITicket extends Document, TicketType {}
 
 // מתכון TYPE 
 export type RecipeType = z.infer<typeof recipeSchemaZod>;
