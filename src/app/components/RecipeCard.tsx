@@ -6,7 +6,7 @@ import { RecipeCardProps } from "@/app/types/irecipe"
 
 const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
     return (
-        <div className="cardwrap m-5">
+        <div className="cardwrap">
             {/* Image Container */}
             <div className="relative h-40 overflow-hidden">
                 <Image
@@ -35,7 +35,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
 
                 {/* Instructions Preview */}
                 <div>
-                    <p className="text-gray-500 text-sm line-clamp-3 overflow-hidden">
+                    <p className="text-gray-500 text-sm line-clamp-2 overflow-hidden">
                     {recipe.instructions}
                     </p>
                 </div>
