@@ -3,6 +3,14 @@ import { arrCategory } from "@/app/types/irecipe";
 import connect from "@/app/lib/db/mongoDB";
 import Recipe from "@/app/lib/models/recipe";
 
+// export const arrCategory=['other','breakfast']
+
+interface Filter{
+  name?: { $regex: string; $options: string };
+  category?: typeof arrCategory[number];  
+  favorite?: boolean;
+}
+
 export async function GET(req: NextRequest) {
   try {
     await connect();
@@ -11,7 +19,7 @@ export async function GET(req: NextRequest) {
     const category = req.nextUrl.searchParams.get("category");
     const favorite = req.nextUrl.searchParams.get("favorite");
 
-    const filter: any = {};
+    const filter:Filter = {};
 
     if (search) {
       filter.name = { $regex: search, $options: "i" }; 
@@ -28,11 +36,19 @@ export async function GET(req: NextRequest) {
     const recipes = await Recipe.find(filter);
 
     return NextResponse.json({ message: "success", data: recipes });
-  } catch (error: any) {
+  } catch (error: unknown) { 
     console.error("Error fetching recipes:", error);
-    return NextResponse.json(
-      { message: "Error fetching recipes", error: error.message },
-      { status: 500 }
-    );
+
+    if (error instanceof Error) {
+      return NextResponse.json(
+        { message: "Error fetching recipes", error: error.message },
+        { status: 500 }
+      );
+    } else {
+      return NextResponse.json(
+        { message: "Error fetching recipes", error: "Unknown error occurred" },
+        { status: 500 }
+      );
+    }
   }
 }
