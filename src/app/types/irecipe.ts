@@ -1,4 +1,4 @@
-import {Document, model, Schema} from "mongoose";
+import {Document} from "mongoose";
 import {z} from 'zod';
 
 const arrCategory=['other','breakfast']
@@ -21,4 +21,12 @@ export default interface irecipe extends Document{
     ingredients:string[];
     instructions:string;
     favorite:boolean;
+}
+
+// מתכון TYPE 
+export type RecipeType = z.infer<typeof recipeSchemaZod>;
+
+// שליחת מתכון בפרופס לקומפוננטה
+export interface RecipeCardProps {
+    recipe: RecipeType; 
 }
