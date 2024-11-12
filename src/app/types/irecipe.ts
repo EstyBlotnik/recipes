@@ -1,7 +1,7 @@
 import {Document, model, Schema} from "mongoose";
 import {z} from 'zod';
 
-const arrCategory=['other','breakfast']
+export const arrCategory=['other','breakfast']
 
 export const recipeSchemaZod = z.object({
     name: z.string().min(2, "Name must have at least 2 characters").max(50,'Name too long, it must contain 50 chars the most'),
