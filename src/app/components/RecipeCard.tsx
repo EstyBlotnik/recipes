@@ -41,7 +41,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
                 </div>
 
                 {/* Read More Button */}
-                <button className="button ">
+                <button className="button mt-3">
                     Read more
                 </button>
             </div>

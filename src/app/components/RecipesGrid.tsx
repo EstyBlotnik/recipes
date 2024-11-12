@@ -2,14 +2,19 @@ import { RecipeType } from "@/app/types/irecipe";
 import RecipeCard from "@/app/components/RecipeCard"
 
 // should recive the arrey of recepies
-// paginathion logic here?
+
+// כאן פאגינשייו הלוגיקה
+
 export default function RecipeGrid() {
    
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
+    <div className="flex justify-center ">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       {demoRecipes.map((recipe, index) => (
+        // לעטוף בקונטקסט שלכל ילד יהיה את כל הפרטים של ברטיס
         <RecipeCard key={index} recipe={recipe} />
       ))}
+    </div>
     </div>
   );
 }
@@ -51,7 +56,7 @@ export default function RecipeGrid() {
     {
         name: "אוכל טעים",
         category: "breakfast",
-        img: "https://images.pexels.com/photos/1410235/pexels-photo-1410235.jpeg?auto=compress&cs=tinysrgb&w=600",
+        img: "https://images.pexels.com/photos/566566/pexels-photo-566566.jpeg?auto=compress&cs=tinysrgb&w=600",
         ingredients: ["חלב", "ביצים"],
         instructions: "חילחילח ל ליחלךחלך חךלחךלחילח לחיווווו וווווווווחילחי למתכון",
         favorite: true
