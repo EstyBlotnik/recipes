@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import "@/app/globals.css";
 import { RecipeTypeWithId } from "../types/irecipe";
 import Image from "./Image";
@@ -14,6 +14,15 @@ interface PopUpProps {
 // add star
 
 const RecipePopUp: React.FC<PopUpProps> = ({ recipe, onClose }) => {
+  
+
+  useEffect(() => {
+    document.body.classList.add("no-scroll"); // מונע גלילה של הדף בעת פתיחת הפופאפ
+    return () => {
+      document.body.classList.remove("no-scroll"); // מחזיר את המצב הרגיל בעת סגירה
+    };
+  }, []);
+  
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-end items-start z-50 ">
       {/* Popup Content */}
