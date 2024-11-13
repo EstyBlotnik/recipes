@@ -1,3 +1,4 @@
+"useClient";
 import React, { useEffect, useState } from 'react';
 import { SearchIcon } from '@heroicons/react/outline';
 
