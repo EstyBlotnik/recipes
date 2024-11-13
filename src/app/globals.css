@@ -7,5 +7,5 @@
 }
 
 .cardwrap{
-    @apply max-w-sm rounded-lg overflow-hidden shadow-lg bg-white hover:shadow-xl transition-shadow duration-300 w-60
+    @apply max-w-sm rounded-lg overflow-hidden shadow-lg bg-white hover:shadow-xl transition-shadow duration-300 sm:w-56 w-full
 }

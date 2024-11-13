@@ -26,7 +26,7 @@ export const arrCategory = [
 ]
 
 export const recipeSchemaZod = z.object({
-    name: z.string().min(2, "Name must have at least 2 characters").max(50, 'Name too long, it must contain 50 chars the most'),
+    name: z.string().min(2, "Name must have at least 2 characters").max(25, 'Name too long, it must contain 50 chars the most'),
     category: z.string().min(2, "Category must have at least 2 characters").refine(val => arrCategory.includes(val), {
         message: `Category must be one of the following: ${arrCategory.join(", ")}`
     }),
@@ -47,9 +47,12 @@ export default interface irecipe extends Document {
 // export interface ITicket extends Document, TicketType {}
 
 // מתכון TYPE 
-export type RecipeType = z.infer<typeof recipeSchemaZod>;
+export type RecipeType = z.infer<typeof recipeSchemaZod> 
 
-// שליחת מתכון בפרופס לקומפוננטה
-export interface RecipeCardProps {
-    recipe: RecipeType;
+export type RecipeTypeWithId = z.infer<typeof recipeSchemaZod> & {
+    _id: string;
+};
+
+export interface RecipesProps {
+    recipesarray: RecipeType[];
 }
