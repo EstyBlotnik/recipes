@@ -45,7 +45,7 @@ export default function Home () {
       <h1>Recipe List</h1>
       <div className=" text-5xl m-5">
       <Header></Header>
-      <RecipesGrid></RecipesGrid>
+      <RecipesGrid arrayRecipes={data}></RecipesGrid>
     </div >
       
       {/* טופס סינון */}

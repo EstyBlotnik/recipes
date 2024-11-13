@@ -54,5 +54,5 @@ export type RecipeTypeWithId = z.infer<typeof recipeSchemaZod> & {
 };
 
 export interface RecipesProps {
-    recipesarray: RecipeType[];
+    arrayRecipes: RecipeTypeWithId[];
 }
