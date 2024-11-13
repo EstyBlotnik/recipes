@@ -4,12 +4,12 @@ import axios from "axios";
 import { useMemo } from "react";
 import { RecipeType } from '@/app/types/irecipe';
 
-const apiUrl = 'http://localhost:3000/api/recipePost';
+const apiUrl = 'http://localhost:3000/api/';
 
 
 export const fetchAllRecipes = async (): Promise<RecipeType[]> => {
   try {
-    const response = await axios.get("http://localhost:3000/api/recipeRoutes");
+    const response = await axios.get(`${apiUrl}recipeRoutes`);
     return response.data.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
@@ -26,7 +26,7 @@ export const fetchAllRecipes = async (): Promise<RecipeType[]> => {
 
 export const getCategories = async() => {
     try {
-        const response = await axios.get('http://localhost:3000/api/recipeCategories');
+        const response = await axios.get(`${apiUrl}categories`);
         return response.data;
     } catch (error) {
         console.error('Error getting categories:', error);
