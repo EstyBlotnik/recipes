@@ -7,7 +7,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import Navbar from './NavBar';
 const AddRecipe = () => {
     const [formData, setFormData] = useState<RecipeType>({
         name: '',
@@ -92,7 +91,6 @@ const AddRecipe = () => {
 
     return (
         <div>
-            <Navbar />
             <div className="max-w-md mx-auto p-6 border border-gray-300 rounded-lg shadow-md m-3">
                 <Link href="/" className="text-stone-900 mb-4 inline-block">
                     &lt; Back
