@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 
 interface ImageResizerProps {
   imageUrl: string;
+  width:number
 }
 
-const ImageResizer: React.FC<ImageResizerProps> = ({ imageUrl }) => {
+const ImageResizer: React.FC<ImageResizerProps> = ({ imageUrl ,width}) => {
   const [resizedImage, setResizedImage] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -22,8 +23,8 @@ const ImageResizer: React.FC<ImageResizerProps> = ({ imageUrl }) => {
       if (!ctx) return;
 
       // יחס 2:3
-      const targetWidth = 200; // רוחב תמונה חדש
-      const targetHeight = 150; // גובה תמונה חדש
+      const targetWidth = width; // רוחב תמונה חדש
+      const targetHeight = width/4*3; // גובה תמונה חדש
 
       const imgWidth = img.width;
       const imgHeight = img.height;
@@ -54,7 +55,7 @@ const ImageResizer: React.FC<ImageResizerProps> = ({ imageUrl }) => {
 
   return (
     <div>
-      <canvas ref={canvasRef} width={200} height={140} style={{ display: 'none' }} />
+      <canvas ref={canvasRef} width={width} height={width/4*3} style={{ display: 'none' }} />
       {resizedImage && <img src={resizedImage} alt="Resized" />}
     </div>
   );
