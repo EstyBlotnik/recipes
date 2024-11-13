@@ -1,14 +1,19 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import {RecipeContext} from "@/app/components/RecipesGrid"
 import { RecipeType } from '../types/irecipe';
 
-const Star: React.FC<RecipeType> = ({ favorite }) => {
+const Star = () => {
 
-  const [isFavorite, setIsFavorite] = useState(favorite);
+  const recipe:RecipeType|null = useContext(RecipeContext);
+  if(recipe === null) return <></>
+
+  const [isFavorite, setIsFavorite] = useState(recipe.favorite);
 
   const toggleFavorite = () => {
     setIsFavorite((prev) => !prev);
     // API, if sucsses toggele
+    console.log(recipe._id)
   };
 
   return (

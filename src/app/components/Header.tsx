@@ -1,10 +1,11 @@
 import React from 'react'
-import RecipeContainer from "@/app/components/RecipeContainer";
+import AddRecipe from "@/app/components/AddRecipeButton";
 
 const Header = () => {
   return (
     <div >
-        <RecipeContainer></RecipeContainer>
+     <p>Heder section</p> 
+      <AddRecipe></AddRecipe>
     </div>
   )
 }
