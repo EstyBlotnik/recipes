@@ -2,7 +2,6 @@ import React, {useState } from 'react';
 import Star from '@/app/components/Star';
 import Image from 'next/image'
 import { RecipeTypeWithId } from "@/app/types/irecipe"
-import { RecipeContext } from "@/app/components/RecipesGrid"
 import RecipePopUp from './RecipePopUp';
 import { useRecipeContecst } from '@/app/hooks/useRecipeContects';
 
