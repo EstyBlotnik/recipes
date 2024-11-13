@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, {useState } from 'react';
 import Star from '@/app/components/Star';
 import Image from 'next/image'
 import { RecipeTypeWithId } from "@/app/types/irecipe"
