@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
     try {
+        console.log("post")
         await connect();
         const { name, category, img, ingredients, instructions } = await request.json();
         console.log(name,category,img)
