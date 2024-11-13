@@ -10,6 +10,8 @@ const RecipeList = () => {
 
   const { data, isLoading, isError, error } = useFilteredRecipes(search, category, favorite);
   const { data: categories, isLoading: isCategoriesLoading, isError: isCategoriesError, error: categoriesError } = useCategories(); 
+  console.log(data,categories);
+  
 
   if (isLoading || isCategoriesLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error?.message}</div>;
