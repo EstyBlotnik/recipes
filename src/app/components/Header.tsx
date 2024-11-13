@@ -1,3 +1,4 @@
+"use client";
 import React from 'react'
 import AddRecipe from "@/app/components/AddRecipeButton";
 import Navbar from './NavBar';
