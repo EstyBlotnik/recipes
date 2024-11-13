@@ -2,7 +2,7 @@
 import { recipeSchemaZod, RecipeType } from '@/app/types/irecipe';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { addBook } from '../services/recipeCrud';
+import { addBook, useCategories } from '../services/recipeCrud';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Image from 'next/image';
@@ -16,10 +16,14 @@ const AddRecipe = () => {
         instructions: '',
         favorite: false,
     });
+    const { data } = useCategories();
+    console.log("categoris:")
+    console.log(data);
+
     const [errors, setErrors] = useState<Partial<Record<keyof RecipeType, string>>>({});
     const router = useRouter();
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
 
         setFormData({
@@ -111,15 +115,21 @@ const AddRecipe = () => {
                     </div>
 
                     <div>
-                        <label className="block text-gray-700">Category:</label>
-                        <input
-                            type="text"
-                            name="category"
-                            value={formData.category}
-                            onChange={handleChange}
-                            className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:border-blue-500 text-gray-800"
-                        />
-                        {errors.category && <span className="text-red-600 text-sm">{errors.category}</span>}
+                        <label className="block text-gray-700">Category:
+                            <select
+                                name="category"
+                                value={formData.category}
+                                onChange={handleChange}
+                                className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:border-blue-500 text-gray-800"
+                            >
+                                {data && data.map((item, index) => (
+                                    <option key={index} value={item}>
+                                        {item}
+                                    </option>
+                                ))}
+                            </select>
+                            {errors.category && <span className="text-red-600 text-sm">{errors.category}</span>}
+                        </label>
                     </div>
 
                     <div>
