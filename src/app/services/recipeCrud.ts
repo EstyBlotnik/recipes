@@ -78,7 +78,7 @@ export const useFilteredRecipes = (search: string, category: string, favorite: b
   return { data: filteredRecipes, isLoading, isError, error };
 };
 
-export const addBook = async (formData: RecipeType) => {
+export const addarecipe = async (formData: RecipeType) => {
   try {
     const response = await axios.post(apiUrl, formData);
     return response.data;

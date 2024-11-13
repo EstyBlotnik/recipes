@@ -2,7 +2,7 @@
 import { recipeSchemaZod, RecipeType } from '@/app/types/irecipe';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { addBook, useCategories } from '../services/recipeCrud';
+import { addarecipe, useCategories } from '../services/recipeCrud';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Image from 'next/image';
@@ -76,11 +76,18 @@ const AddRecipe = () => {
             // אם הוולידציה הצליחה, אפשר לשלוח את הנתונים לשרת או לבצע פעולה אחרת
             console.log("הנתונים תקינים:", validationResult.data);
             setErrors({}); // איפוס הודעות שגיאה
-            addBook(formData);
-            toast.success('המתכון נוסף בהצלחה!', {
-                onClose: () => router.push('/'), // ניתוב לדף הבית לאחר סגירת ההודעה
-                autoClose: 2000, // סוגר אוטומטית את ההתראה אחרי 2 שניות
-            });
+            try {
+                addarecipe(formData);
+                toast.success('המתכון נוסף בהצלחה!', {
+                    onClose: () => router.push('/'), // ניתוב לדף הבית לאחר סגירת ההודעה
+                    autoClose: 2000, // סוגר אוטומטית את ההתראה אחרי 2 שניות
+                });
+            } catch (error) {
+                toast.error(`אירעה שגיאה בעת הוספת המתכון. אנא נסה שוב. ${error}`, {
+                    autoClose: 2000, 
+                });
+
+            }
         }
     };
 
