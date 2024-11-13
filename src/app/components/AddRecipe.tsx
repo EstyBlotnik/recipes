@@ -1,6 +1,12 @@
 "use client";
 import { recipeSchemaZod, RecipeType } from '@/app/types/irecipe';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { addBook } from '../services/recipeCrud';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Image from 'next/image';
+import Link from 'next/link';
 const AddRecipe = () => {
     const [formData, setFormData] = useState<RecipeType>({
         name: '',
@@ -11,6 +17,8 @@ const AddRecipe = () => {
         favorite: false,
     });
     const [errors, setErrors] = useState<Partial<Record<keyof RecipeType, string>>>({});
+    const router = useRouter();
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
 
@@ -23,7 +31,7 @@ const AddRecipe = () => {
     const addIngredient = () => {
         setFormData((prevFormData) => ({
             ...prevFormData,
-            ingredients: [...prevFormData.ingredients, ''], // הוספת רכיב ריק
+            ingredients: [...prevFormData.ingredients, '']
         }));
     };
 
@@ -64,21 +72,30 @@ const AddRecipe = () => {
             // אם הוולידציה הצליחה, אפשר לשלוח את הנתונים לשרת או לבצע פעולה אחרת
             console.log("הנתונים תקינים:", validationResult.data);
             setErrors({}); // איפוס הודעות שגיאה
+            addBook(formData);
+            toast.success('המתכון נוסף בהצלחה!', {
+                onClose: () => router.push('/'), // ניתוב לדף הבית לאחר סגירת ההודעה
+                autoClose: 2000, // סוגר אוטומטית את ההתראה אחרי 2 שניות
+            });
         }
-
-        console.log("all data", formData)
     };
+
     const removeIngredient = (index: number) => {
         const updatedIngredients = [...formData.ingredients];
         updatedIngredients.splice(index, 1);
         setFormData({
             ...formData,
-            ingredients: updatedIngredients.length > 0 ? updatedIngredients as [string, ...string[]]: [''], // טיפוס המבטיח לפחות אלמנט אחד
+            ingredients: updatedIngredients.length > 0 ? updatedIngredients as [string, ...string[]] : [''], // טיפוס המבטיח לפחות אלמנט אחד
         });
     };
 
     return (
-        <div className="max-w-md mx-auto p-6 border border-gray-300 rounded-lg shadow-md">
+
+        <div className="max-w-md mx-auto p-6 border border-gray-300 rounded-lg shadow-md m-3">
+            <Link href="/" className="text-stone-900 mb-4 inline-block">
+                &lt; Back
+            </Link>
+
             <h2 className="text-2xl font-semibold mb-4 text-center">Add a recipe</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
@@ -132,7 +149,12 @@ const AddRecipe = () => {
                                 onClick={() => removeIngredient(index)}
                                 className="ml-2 text-red-600"
                             >
-                                Remove
+                                <Image
+                                    src="https://img.icons8.com/?size=100&id=102315&format=png&color=000000"
+                                    alt="Delete Icon"
+                                    width={20}  // גודל קטן לאייקון
+                                    height={20}
+                                />
                             </button>
                         </div>
                     ))}
@@ -161,6 +183,7 @@ const AddRecipe = () => {
                     Submit
                 </button>
             </form>
+            <ToastContainer position="top-center" />
         </div>
     );
 }
