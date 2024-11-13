@@ -1,13 +1,9 @@
 'use client'
-import RecipesGrid from "./components/RecipesGrid";
-import Header from "./components/Header";
 import React, { useState } from "react";
 import { RecipeType } from "@/app/types/irecipe"; 
 import { useFilteredRecipes, useCategories } from "@/app/services/recipeCrud";
 
- 
-
-export default function Home () {
+const RecipeList = () => {
   const [search, setSearch] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [favorite, setFavorite] = useState<boolean>(false);
@@ -41,13 +37,8 @@ export default function Home () {
   }) || [];
 
   return (
-
     <div>
       <h1>Recipe List</h1>
-      <div className=" m-5">
-      <Header></Header>
-      <RecipesGrid></RecipesGrid>
-    </div >
       
       {/* טופס סינון */}
       {/* <div>
@@ -83,5 +74,4 @@ export default function Home () {
   );
 };
 
-
-
+export default RecipeList;
