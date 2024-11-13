@@ -2,18 +2,20 @@
 import React from "react";
 import "@/app/globals.css";
 import { RecipeTypeWithId } from "../types/irecipe";
+import { useRecipeContecst } from '@/app/hooks/useRecipeContects';
 import Image from "./Image";
 import Star from "./Star";
 
 interface PopUpProps {
-  recipe: RecipeTypeWithId;
   onClose: () => void; // Callback to close the popup
 }
 
 // useUser from import { useUser } from '@/app/hooks/useRecipeContects';
 // add star
 
-const RecipePopUp: React.FC<PopUpProps> = ({ recipe, onClose }) => {
+const RecipePopUp: React.FC<PopUpProps> = ({ onClose }) => {
+  
+  const recipe:RecipeTypeWithId = useRecipeContecst()
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-end items-start z-50 ">
       {/* Popup Content */}

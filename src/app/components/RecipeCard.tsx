@@ -60,7 +60,7 @@ const RecipeCard = () => {
             </div>
             <div className='bg-slate-500'>
                 {showPopup && (
-                    <RecipePopUp recipe={recipe} onClose={() => setShowPopup(false)} />
+                    <RecipePopUp onClose={() => setShowPopup(false)} />
                 )}
             </div>
         </div>
