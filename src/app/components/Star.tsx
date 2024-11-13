@@ -1,12 +1,12 @@
 "use client"
 import React, { useState, useContext } from 'react';
 import { RecipeContext } from "@/app/components/RecipesGrid"
-import { RecipeType } from '../types/irecipe';
+import { RecipeTypeWithId } from '../types/irecipe';
+import { useRecipeContecst } from '@/app/hooks/useRecipeContects';
 
 const Star = () => {
 
-  const recipe: RecipeType | null = useContext(RecipeContext);
-  if (recipe === null) return <></>
+  const recipe: RecipeTypeWithId  = useRecipeContecst();
 
   const [isFavorite, setIsFavorite] = useState(recipe?.favorite || false);
 

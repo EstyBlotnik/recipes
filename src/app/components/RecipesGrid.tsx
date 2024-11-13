@@ -1,10 +1,10 @@
 "use client"
 
-import { RecipeType } from "@/app/types/irecipe";
+import { RecipeTypeWithId } from "@/app/types/irecipe";
 import RecipeCard from "@/app/components/RecipeCard"
 import { createContext } from 'react';
 
-export const RecipeContext = createContext<RecipeType | null>(null);
+export const RecipeContext = createContext<RecipeTypeWithId | null>(null);
 
 export default function RecipeGrid() {
   return (
@@ -24,7 +24,7 @@ export default function RecipeGrid() {
 }
 
 
-const demoRecipes: RecipeType[] = [
+const demoRecipes: RecipeTypeWithId[] = [
   {
     _id: "1",
     name: "אוכלrrrrr טעים",

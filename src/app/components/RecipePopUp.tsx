@@ -1,13 +1,16 @@
 "use client";
 import React from "react";
 import "@/app/globals.css";
-import { RecipeType } from "../types/irecipe";
+import { RecipeTypeWithId } from "../types/irecipe";
 import Image from "next/image";
 
 interface PopUpProps {
-  recipe: RecipeType;
+  recipe: RecipeTypeWithId;
   onClose: () => void; // Callback to close the popup
 }
+
+// useUser from import { useUser } from '@/app/hooks/useRecipeContects';
+// add star
 
 const RecipePopUp: React.FC<PopUpProps> = ({ recipe, onClose }) => {
   return (

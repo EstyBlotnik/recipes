@@ -1,15 +1,16 @@
 import React, { useContext, useState } from 'react';
 import Star from '@/app/components/Star';
 import Image from 'next/image'
-import { RecipeType } from "@/app/types/irecipe"
+import { RecipeTypeWithId } from "@/app/types/irecipe"
 import { RecipeContext } from "@/app/components/RecipesGrid"
 import RecipePopUp from './RecipePopUp';
+import { useRecipeContecst } from '@/app/hooks/useRecipeContects';
 
 
 const RecipeCard = () => {
     const [showPopup, setShowPopup] = useState(false);
 
-    const recipe: RecipeType | null = useContext(RecipeContext);
+    const recipe: RecipeTypeWithId  = useRecipeContecst();
     if (recipe === null) return <></>
 
     return (

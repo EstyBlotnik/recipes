@@ -25,7 +25,9 @@ export default interface irecipe extends Document {
 // export interface ITicket extends Document, TicketType {}
 
 // מתכון TYPE 
-export type RecipeType = z.infer<typeof recipeSchemaZod> & {
+export type RecipeType = z.infer<typeof recipeSchemaZod> 
+
+export type RecipeTypeWithId = z.infer<typeof recipeSchemaZod> & {
     _id: string;
 };
 
