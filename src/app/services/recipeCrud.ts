@@ -1,5 +1,5 @@
 "use client";
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useMemo } from "react";
 import { RecipeType } from '@/app/types/irecipe';
@@ -44,7 +44,7 @@ export const useRecipes = () => {
   
 };
 export const useCategories  = () => {
-    return useQuery<String[], Error>({
+    return useQuery<string[], Error>({
       queryKey: ["categories"], 
       queryFn: getCategories, // פונקציית השליפה
       staleTime: 1000 * 60 * 60 * 24,
