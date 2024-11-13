@@ -1,7 +1,4 @@
-"use client";
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useMemo } from "react";
 import { RecipeTypeWithId } from "@/app/types/irecipe";
 
 const apiUrl = "http://localhost:3000/api/";
@@ -33,55 +30,6 @@ export const getCategories = async () => {
   }
 };
 
-// שימוש ב-React Query לשמירת הנתונים במטמון
-export const useRecipes = () => {
-  return useQuery<RecipeTypeWithId[], Error>({
-    queryKey: ["recipes"],
-    queryFn: fetchAllRecipes, 
-    staleTime: 1000 * 60 * 60 * 24,
-  });
-};
-export const useCategories = () => {
-  return useQuery<string[], Error>({
-    queryKey: ["categories"],
-    queryFn: getCategories, 
-    staleTime: 1000 * 60 * 60 * 24,
-  });
-};
-
-export const useFilteredRecipes = (
-  search: string,
-  category: string,
-  favorite: boolean
-) => {
-  const { data: recipes, isLoading, isError, error } = useRecipes();
-
-  // סינון המתכונים לפי חיפש טקסט, קטגוריה ו-favorite
-  const filteredRecipes = useMemo(() => { 
-    if (!recipes) return [];
-
-    return recipes.filter((recipe) => {
-
-      // סינון לפי חיפוש בטקסט
-      const matchesSearch = search
-        ? recipe.name.toLowerCase().includes(search.toLowerCase())
-        : true;
-
-      // סינון לפי קטגוריה
-      const matchesCategory = category
-        ? recipe.category.toLowerCase() === category.toLowerCase()
-        : true;
-      // סינון לפי האם הוא מועדף
-      const matchesFavorite =
-        favorite !== undefined ? recipe.favorite === favorite : true;
-
-      return matchesSearch && matchesCategory && matchesFavorite;
-    });
-  }, [recipes, search, category, favorite]);
-
-  return { data: filteredRecipes, isLoading, isError, error };
-};
-
 export const addBook = async (formData: RecipeTypeWithId) => {
   try {
     const response = await axios.post(`${apiUrl}/recipePost`, formData);
@@ -92,4 +40,3 @@ export const addBook = async (formData: RecipeTypeWithId) => {
   }
 };
 
-export default useRecipes;

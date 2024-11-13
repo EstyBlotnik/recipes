@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { SearchIcon } from "@heroicons/react/outline";
-import { useCategories } from "@/app/services/recipeCrud";
+import { useCategories } from "@/app/hooks/useQuery";
 
 interface NavbarProps {
   onSearchChange: (value: string) => void;
