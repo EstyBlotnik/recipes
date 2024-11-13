@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Image from 'next/image';
 import Link from 'next/link';
+import Navbar from './NavBar';
 const AddRecipe = () => {
     const [formData, setFormData] = useState<RecipeType>({
         name: '',
@@ -90,100 +91,102 @@ const AddRecipe = () => {
     };
 
     return (
+        <div>
+            <Navbar />
+            <div className="max-w-md mx-auto p-6 border border-gray-300 rounded-lg shadow-md m-3">
+                <Link href="/" className="text-stone-900 mb-4 inline-block">
+                    &lt; Back
+                </Link>
 
-        <div className="max-w-md mx-auto p-6 border border-gray-300 rounded-lg shadow-md m-3">
-            <Link href="/" className="text-stone-900 mb-4 inline-block">
-                &lt; Back
-            </Link>
+                <h2 className="text-2xl font-semibold mb-4 text-center">Add a recipe</h2>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                        <label className="block text-gray-700">Recipe Name:</label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:border-blue-500 text-gray-800"
+                        />
+                        {errors.name && <span className="text-red-600 text-sm">{errors.name}</span>}
+                    </div>
 
-            <h2 className="text-2xl font-semibold mb-4 text-center">Add a recipe</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                    <label className="block text-gray-700">Recipe Name:</label>
-                    <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:border-blue-500 text-gray-800"
-                    />
-                    {errors.name && <span className="text-red-600 text-sm">{errors.name}</span>}
-                </div>
+                    <div>
+                        <label className="block text-gray-700">Category:</label>
+                        <input
+                            type="text"
+                            name="category"
+                            value={formData.category}
+                            onChange={handleChange}
+                            className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:border-blue-500 text-gray-800"
+                        />
+                        {errors.category && <span className="text-red-600 text-sm">{errors.category}</span>}
+                    </div>
 
-                <div>
-                    <label className="block text-gray-700">Category:</label>
-                    <input
-                        type="text"
-                        name="category"
-                        value={formData.category}
-                        onChange={handleChange}
-                        className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:border-blue-500 text-gray-800"
-                    />
-                    {errors.category && <span className="text-red-600 text-sm">{errors.category}</span>}
-                </div>
+                    <div>
+                        <label className="block text-gray-700">Image URL:</label>
+                        <input
+                            type="text"
+                            name="img"
+                            value={formData.img}
+                            onChange={handleChange}
+                            className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:border-blue-500 text-gray-800"
+                        />
+                        {errors.img && <span className="text-red-600 text-sm">{errors.img}</span>}
+                    </div>
 
-                <div>
-                    <label className="block text-gray-700">Image URL:</label>
-                    <input
-                        type="text"
-                        name="img"
-                        value={formData.img}
-                        onChange={handleChange}
-                        className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:border-blue-500 text-gray-800"
-                    />
-                    {errors.img && <span className="text-red-600 text-sm">{errors.img}</span>}
-                </div>
-
-                <div>
-                    <label className="block text-gray-700">Ingredients:</label>
-                    {formData.ingredients.map((ingredient, index) => (
-                        <div key={index} className="flex items-center mb-2">
-                            <input
-                                type="text"
-                                value={ingredient}
-                                onChange={(e) => handleIngredientChange(e, index)}
-                                className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:border-blue-500 text-gray-800"
-                            />
-                            <button
-                                type="button"
-                                onClick={() => removeIngredient(index)}
-                                className="ml-2 text-red-600"
-                            >
-                                <Image
-                                    src="https://img.icons8.com/?size=100&id=102315&format=png&color=000000"
-                                    alt="Delete Icon"
-                                    width={20}  // גודל קטן לאייקון
-                                    height={20}
+                    <div>
+                        <label className="block text-gray-700">Ingredients:</label>
+                        {formData.ingredients.map((ingredient, index) => (
+                            <div key={index} className="flex items-center mb-2">
+                                <input
+                                    type="text"
+                                    value={ingredient}
+                                    onChange={(e) => handleIngredientChange(e, index)}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:border-blue-500 text-gray-800"
                                 />
-                            </button>
-                        </div>
-                    ))}
-                    <button
-                        type="button"
-                        onClick={addIngredient}
-                        className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
-                    >
-                        Add Ingredient
+                                <button
+                                    type="button"
+                                    onClick={() => removeIngredient(index)}
+                                    className="ml-2 text-red-600"
+                                >
+                                    <Image
+                                        src="https://img.icons8.com/?size=100&id=102315&format=png&color=000000"
+                                        alt="Delete Icon"
+                                        width={20}  // גודל קטן לאייקון
+                                        height={20}
+                                    />
+                                </button>
+                            </div>
+                        ))}
+                        <button
+                            type="button"
+                            onClick={addIngredient}
+                            className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
+                        >
+                            Add Ingredient
+                        </button>
+                        {errors.ingredients && <span className="text-red-600 text-sm">{errors.ingredients}</span>}
+                    </div>
+
+                    <div>
+                        <label className="block text-gray-700">Instructions:</label>
+                        <textarea
+                            name="instructions"
+                            value={formData.instructions}
+                            onChange={handleChange}
+                            className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:border-blue-500 text-gray-800"
+                        />
+                        {errors.instructions && <span className="text-red-600 text-sm">{errors.instructions}</span>}
+                    </div>
+
+                    <button type="submit" className="w-full bg-green-500 text-white py-2 rounded mt-4 hover:bg-green-600 transition duration-300">
+                        Submit
                     </button>
-                    {errors.ingredients && <span className="text-red-600 text-sm">{errors.ingredients}</span>}
-                </div>
-
-                <div>
-                    <label className="block text-gray-700">Instructions:</label>
-                    <textarea
-                        name="instructions"
-                        value={formData.instructions}
-                        onChange={handleChange}
-                        className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:border-blue-500 text-gray-800"
-                    />
-                    {errors.instructions && <span className="text-red-600 text-sm">{errors.instructions}</span>}
-                </div>
-
-                <button type="submit" className="w-full bg-green-500 text-white py-2 rounded mt-4 hover:bg-green-600 transition duration-300">
-                    Submit
-                </button>
-            </form>
-            <ToastContainer position="top-center" />
+                </form>
+                <ToastContainer position="top-center" />
+            </div>
         </div>
     );
 }
