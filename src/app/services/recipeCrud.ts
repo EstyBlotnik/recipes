@@ -2,12 +2,12 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useMemo } from "react";
-import { RecipeType } from '@/app/types/irecipe';
+import { RecipeTypeWithId } from '@/app/types/irecipe';
 
 const apiUrl = 'http://localhost:3000/api/';
 
 
-export const fetchAllRecipes = async (): Promise<RecipeType[]> => {
+export const fetchAllRecipes = async (): Promise<RecipeTypeWithId[]> => {
   try {
     const response = await axios.get(`${apiUrl}recipeRoutes`);
     return response.data.data;
@@ -36,7 +36,7 @@ export const getCategories = async() => {
 
 // שימוש ב-React Query לשמירת הנתונים במטמון
 export const useRecipes = () => {
-  return useQuery<RecipeType[], Error>({
+  return useQuery<RecipeTypeWithId[], Error>({
     queryKey: ["recipes"], 
     queryFn: fetchAllRecipes, // פונקציית השליפה
     staleTime: 1000 * 60 * 60 * 24,
@@ -78,9 +78,9 @@ export const useFilteredRecipes = (search: string, category: string, favorite: b
     return { data: filteredRecipes, isLoading, isError, error };
   };
 
-  export const addBook = async (formData:RecipeType) => {
+  export const addBook = async (formData:RecipeTypeWithId) => {
     try {
-        const response = await axios.post(apiUrl, formData);
+        const response = await axios.post(`${apiUrl}recipePost`, formData);
         return response.data;
     } catch (error) {
         console.error('Error adding recipe:', error);
