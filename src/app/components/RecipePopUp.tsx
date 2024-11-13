@@ -24,7 +24,7 @@ const RecipePopUp: React.FC<PopUpProps> = ({ recipe, onClose }) => {
   }, []);
   
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-end items-start z-50 ">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-end items-start z-50 " onClick={onClose}>
       {/* Popup Content */}
       <div className="relative flex flex-row justify-center w-[350px] min-h-full bg-white overflow-y-auto shadow-xl p-6">
         {/* Close Button */}
