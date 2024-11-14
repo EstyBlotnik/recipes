@@ -6,7 +6,7 @@ import { createContext, useState } from 'react';
 
 export const RecipeContext = createContext<RecipeTypeWithId | null>(null);
 
-const ITEMS_IN_PAGE = 20;
+const ITEMS_IN_PAGE = 10;
 
 export default function RecipeGrid({arrayRecipes}:RecipesProps) {
 
