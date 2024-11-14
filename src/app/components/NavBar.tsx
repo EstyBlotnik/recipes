@@ -1,5 +1,5 @@
 "use client";
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { SearchIcon } from "@heroicons/react/outline";
 import { useCategories } from "@/app/hooks/useQuery";
 

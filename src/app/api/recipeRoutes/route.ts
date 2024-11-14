@@ -4,7 +4,10 @@ import Recipe from "@/app/lib/models/recipe";
 
 // export const arrCategory=['other','breakfast']- צריך להיות מערך כאן ולמחוק מהtypes
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3d8202c9c3f19f119661369150578c299f0406b0
 export async function GET() {
   try {
     await connect();
