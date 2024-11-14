@@ -2,17 +2,17 @@
 import React, { useState } from 'react';
 import { RecipeTypeWithId } from '../types/irecipe';
 import { useRecipeContecst } from '@/app/hooks/useRecipeContects';
-
+import {updateFavorite} from '@/app/services/recipeCrud'
 const Star = () => {
 
   const recipe: RecipeTypeWithId  = useRecipeContecst();
 
-  const [isFavorite, setIsFavorite] = useState(recipe?.favorite || false);
+  const [isFavorite, setIsFavorite] = useState(recipe.favorite);
 
-  const toggleFavorite = () => {
+  const toggleFavorite = async () => {
     if (recipe) {
-      setIsFavorite((prev) => !prev);
-      // API, if sucsses toggele
+      const updatedRecipe =await updateFavorite(recipe._id, !isFavorite);
+      setIsFavorite(updatedRecipe .favorite);
       console.log(recipe._id)
     }
   };

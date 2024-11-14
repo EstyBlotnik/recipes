@@ -38,7 +38,7 @@ const RecipePopUp: React.FC<PopUpProps> = ({ recipe, onClose }) => {
         </button>
 
         {/* Recipe Content */}
-        <div className="bg-red-300 p-4">
+        <div className= "p-4">
           <div className="flex flex-col justify-center items-center pt-12 w-full">
             <h3 className="text-xl font-bold text-gray-900 mb-2">
               {recipe.name}
