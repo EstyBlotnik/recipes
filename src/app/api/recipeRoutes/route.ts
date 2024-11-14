@@ -1,40 +1,13 @@
-import { NextRequest, NextResponse } from "next/server";
-import { arrCategory } from "@/app/types/irecipe";
+import { NextResponse } from "next/server";
 import connect from "@/app/lib/db/mongoDB";
 import Recipe from "@/app/lib/models/recipe";
 
-// export const arrCategory=['other','breakfast']
+// export const arrCategory=['other','breakfast']- צריך להיות מערך כאן ולמחוק מהtypes
 
-interface Filter{
-  name?: { $regex: string; $options: string };
-  category?: typeof arrCategory[number];  
-  favorite?: boolean;
-}
-
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     await connect();
-
-    const search = req.nextUrl.searchParams.get("search");
-    const category = req.nextUrl.searchParams.get("category");
-    const favorite = req.nextUrl.searchParams.get("favorite");
-
-    const filter:Filter = {};
-
-    if (search) {
-      filter.name = { $regex: search, $options: "i" }; 
-    }
-
-    if (category && arrCategory.includes(category)) {
-      filter.category = category;
-    }
-
-    if (favorite) {
-      filter.favorite = favorite === "true";
-    }
-
-    const recipes = await Recipe.find(filter);
-
+    const recipes = await Recipe.find({}); 
     return NextResponse.json({ message: "success", data: recipes });
   } catch (error: unknown) { 
     console.error("Error fetching recipes:", error);
@@ -52,3 +25,4 @@ export async function GET(req: NextRequest) {
     }
   }
 }
+
