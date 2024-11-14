@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { SearchIcon } from "@heroicons/react/outline";
 import { useCategories } from "@/app/hooks/useQuery";
 
@@ -18,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [search, setSearch] = useState<string>("");
 
-  const { data: categories, isLoading, isError, error } = useCategories();
+  const { data: categories } = useCategories();
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
