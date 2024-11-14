@@ -26,7 +26,7 @@ const RecipePopUp: React.FC<PopUpProps> = ({ recipe, onClose }) => {
     >
       {/* Popup Content */}
       <div
-        className="relative flex flex-col w-[350px] h-full bg-white shadow-xl p-6 overflow-y-auto"
+        className="relative flex flex-col w-[450px] h-full bg-white shadow-xl p-6 overflow-y-auto"
         onClick={(event) => event.stopPropagation()} // מונע סגירה על לחיצה בתוך הפופאפ
       >
         {/* Close Button */}
@@ -51,16 +51,16 @@ const RecipePopUp: React.FC<PopUpProps> = ({ recipe, onClose }) => {
               <Star />
             </div>
 
-            <div className="w-[90%] justify-center mb-4">
+            <div className="w-[100%] justify-center mb-4">
               <Image imageUrl={recipe.img} width={400} />
             </div>
           </div>
 
           <div className="mb-4">
-            <span className="text-base font-semibold text-gray-800 mb-2">
+            <span className="text-base font-semibold text-gray-800 mb-4">
               Ingredients
             </span>
-            <ul className="list-disc pl-6 text-gray-700 text-xs">
+            <ul className="list-disc pl-6 text-gray-700 text-sm mb-4">
               {recipe.ingredients.map((ingredient, index) => (
                 <li key={index}>{ingredient}</li>
               ))}
@@ -71,7 +71,7 @@ const RecipePopUp: React.FC<PopUpProps> = ({ recipe, onClose }) => {
             <h3 className="text-base font-semibold text-gray-800 mb-2">
               Instructions
             </h3>
-            <p className="text-gray-700 text-xs">{recipe.instructions}</p>
+            <p className="text-gray-700 text-sm">{recipe.instructions}</p>
           </div>
         </div>
       </div>

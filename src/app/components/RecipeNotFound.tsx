@@ -7,7 +7,7 @@ interface RecipeNotFoundProps {
 
 const RecipeNotFound: React.FC<RecipeNotFoundProps> = ({ message }) => {
   return (
-    <div className="flex flex-col items-center justify-center h-64 p-4 bg-gray-50 rounded-lg shadow-md">
+    <div className="flex flex-col items-center justify-center p-4 bg-gray-50 rounded-lg shadow-md h-80">
       <div className="text-5xl mb-4">🍽️</div>
       <h2 className="text-lg font-semibold text-gray-800">
         {message || 'No recipes match your criteria'}

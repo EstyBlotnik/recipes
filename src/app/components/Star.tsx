@@ -1,20 +1,31 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+import React, { useState, useEffect } from 'react';
 import { RecipeTypeWithId } from '../types/irecipe';
 import { useRecipeContecst } from '@/app/hooks/useRecipeContects';
-import {updateFavorite} from '@/app/services/recipeCrud'
-const Star = () => {
+import { updateFavorite } from '@/app/services/recipeCrud';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-  const recipe: RecipeTypeWithId  = useRecipeContecst();
+const Star = () => {
+  const recipe: RecipeTypeWithId = useRecipeContecst();
+  const queryClient = useQueryClient();
 
   const [isFavorite, setIsFavorite] = useState(recipe.favorite);
 
-  const toggleFavorite = async () => {
-    if (recipe) {
-      const updatedRecipe =await updateFavorite(recipe._id, !isFavorite);
-      setIsFavorite(updatedRecipe .favorite);
-      console.log(recipe._id)
-    }
+  useEffect(() => {
+    setIsFavorite(recipe.favorite);
+  }, [recipe.favorite]);
+
+  const mutation = useMutation({
+    mutationFn: (newFavorite:boolean) => updateFavorite(recipe._id, newFavorite),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['recipes'] });
+
+    },
+  });
+
+  const toggleFavorite = () => {
+    setIsFavorite(prevFavorite => !prevFavorite);
+    mutation.mutate(!isFavorite);
   };
 
   return (

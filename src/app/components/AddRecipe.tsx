@@ -13,7 +13,7 @@ import { useQueryClient } from "@tanstack/react-query";
 const AddRecipe = () => {
   const [formData, setFormData] = useState<RecipeType>({
     name: "",
-    category: "",
+    category: "Other",
     img: "",
     ingredients: [""],
     instructions: "",
