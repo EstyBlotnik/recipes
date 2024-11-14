@@ -2,7 +2,7 @@
 
 import { RecipeTypeWithId, RecipesProps } from "@/app/types/irecipe";
 import RecipeCard from "@/app/components/RecipeCard"
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 export const RecipeContext = createContext<RecipeTypeWithId | null>(null);
 
@@ -10,15 +10,24 @@ const ITEMS_IN_PAGE = 10;
 
 export default function RecipeGrid({arrayRecipes}:RecipesProps) {
 
+ 
+
+  
   const [pageNumber, setPageNumber] = useState(1);
   const totalPages = Math.ceil(arrayRecipes.length / ITEMS_IN_PAGE);
 
+  
+
   const pagePagination = () => {
     const indexBegins = ITEMS_IN_PAGE * (pageNumber -1);
-    
     return arrayRecipes.slice(indexBegins, indexBegins + ITEMS_IN_PAGE);
-
   }
+
+
+  useEffect(() => {
+    setPageNumber(1);
+  }, [arrayRecipes]);
+  
 
   return (
 
