@@ -5,7 +5,7 @@ import Navbar from './NavBar';
 
 const Header = () => {
   return (
-    <div className='flex justify-between'>
+    <div className='flex flex-col-reverse sm:flex-row justify-between'>
       <Navbar />
       <AddRecipe />
     </div>
