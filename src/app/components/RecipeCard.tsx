@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import Star from '@/app/components/Star';
 // import Image from 'next/image'
 import { RecipeTypeWithId } from "@/app/types/irecipe"
@@ -10,15 +10,15 @@ import Image from './Image';
 const RecipeCard = () => {
     const [showPopup, setShowPopup] = useState(false);
 
-    const recipe: RecipeTypeWithId  = useRecipeContecst();
+    const recipe: RecipeTypeWithId = useRecipeContecst();
     if (recipe === null) return <></>
 
     return (
-        <div>
-            <div >
+        <div className='h-full'>
+            <div className='h-full'>
                 {/* Image Container */}
                 <div className="relative h-40 overflow-hidden w-full sm:w-56">
-                    <Image imageUrl={recipe.img} width={600}/>
+                    <Image imageUrl={recipe.img} width={600} />
                     {/* <Image
                         src={recipe.img}
                         alt={recipe.name}
@@ -29,7 +29,7 @@ const RecipeCard = () => {
                 </div>
 
                 {/* Content Container */}
-                <div className="p-3">
+                <div className="p-3 flex flex-col justify-between h-60">
                     {/* Title and Favorite Row */}
                     <div className="flex justify-between items-center mb-1">
                         <h2 className="text-xl font-semibold text-gray-800">
@@ -45,7 +45,7 @@ const RecipeCard = () => {
 
                     {/* Instructions Preview */}
                     <div>
-                        <p className="text-gray-500 text-sm line-clamp-2 overflow-hidden">
+                        <p className="text-gray-500 text-sm line-clamp-3 overflow-hidden">
                             {recipe.instructions}
                         </p>
                     </div>

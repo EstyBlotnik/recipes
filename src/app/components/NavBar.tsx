@@ -44,23 +44,25 @@ const Navbar: React.FC<NavbarProps> = ({
         <h1 className="text-3xl font-semibold">Recipes</h1>
       </div>
 
-      <div className="flex items-center mb-4">
-        <input
-          type="text"
-          placeholder="Search recipes..."
-          value={search}
-          onChange={handleSearchChange}
-          className="p-2 text-lg rounded-l-md w-64 border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 h-10"
-        />
+      <div className="flex flex-col sm:flex-row items-start sm:items-center w-full sm:w-auto gap-4 sm:gap-6 mb-4 sm:mb-0">
+        <div className="flex w-full sm:w-auto">
+          <input
+            type="text"
+            placeholder="Search recipes..."
+            value={search}
+            onChange={handleSearchChange}
+            className="p-2 text-lg rounded-l-md w-full sm:w-64 border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 h-10"
+          />
 
-        <button className="bg-gray-200 text-gray-800 p-2 rounded-r-md h-10">
-          <SearchIcon className="h-5 w-5 text-gray-600" />
-        </button>
+          <button className="bg-gray-200 text-gray-800 p-2 rounded-r-md h-10">
+            <SearchIcon className="h-5 w-5 text-gray-600" />
+          </button>
+        </div>
 
         <select
           value={selectedCategory}
           onChange={handleCategoryChange}
-          className="p-2 rounded-md border border-gray-300 ml-4 h-10"
+          className="p-2 rounded-md border border-gray-300 w-full sm:w-auto h-10"
         >
           <option value="">Select Category</option>
           {categories?.map((category) => (
@@ -77,7 +79,7 @@ const Navbar: React.FC<NavbarProps> = ({
             activeTab === "all"
               ? "border-b-2 border-gray-800"
               : "border-b-2 border-transparent"
-          } pb-1 hover:border-b-2 hover:border-gray-400`}
+            } pb-1 hover:border-b-2 hover:border-gray-400`}
           onClick={() => {
             setActiveTab("all");
             onFavoriteToggle(false);
@@ -90,7 +92,7 @@ const Navbar: React.FC<NavbarProps> = ({
             activeTab === "favorites"
               ? "border-b-2 border-gray-800"
               : "border-b-2 border-transparent"
-          } pb-1 hover:border-b-2 hover:border-gray-400`}
+            } pb-1 hover:border-b-2 hover:border-gray-400`}
           onClick={toggleFavorites}
         >
           Favorites

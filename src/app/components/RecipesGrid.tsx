@@ -25,7 +25,9 @@ export default function RecipeGrid({arrayRecipes}:RecipesProps) {
     <div className="flex flex-col justify-center ">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {pagePagination().map((recipe, index) => (
-          <div key={index} className="cardwrap">
+          <div key={index} className="cardwrap flex flex-col justify-between">
+
+        
             <RecipeContext.Provider value={recipe}>
               <RecipeCard />
             </RecipeContext.Provider>
