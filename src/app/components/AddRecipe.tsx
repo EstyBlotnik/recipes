@@ -2,7 +2,8 @@
 import { recipeSchemaZod, RecipeType } from '@/app/types/irecipe';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { addarecipe, useCategories } from '../services/recipeCrud';
+import { addarecipe } from '../services/recipeCrud';
+import {useCategories} from '../hooks/useQuery';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Image from 'next/image';
