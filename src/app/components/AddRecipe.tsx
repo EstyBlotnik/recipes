@@ -11,7 +11,7 @@ import Link from 'next/link';
 const AddRecipe = () => {
     const [formData, setFormData] = useState<RecipeType>({
         name: '',
-        category: '',
+        category: 'Other',
         img: '',
         ingredients: [''],
         instructions: '',
