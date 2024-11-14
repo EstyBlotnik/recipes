@@ -30,7 +30,7 @@ const useFilteredRecipes = (
         : true;
       // סינון לפי האם הוא מועדף
       const matchesFavorite =
-        favorite !== undefined ? recipe.favorite === favorite : true;
+        favorite !== false ? recipe.favorite === favorite : true;
 
       return matchesSearch && matchesCategory && matchesFavorite;
     });
