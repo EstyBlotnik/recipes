@@ -2,8 +2,6 @@ import { NextResponse } from "next/server";
 import connect from "@/app/lib/db/mongoDB";
 import Recipe from "@/app/lib/models/recipe";
 
-// export const arrCategory=['other','breakfast']- צריך להיות מערך כאן ולמחוק מהtypes
-
 export async function GET() {
   try {
     await connect();
@@ -26,3 +24,4 @@ export async function GET() {
   }
 }
 
+//dd
