@@ -26,7 +26,9 @@ const RecipePopUp: React.FC<PopUpProps> = ({ recipe, onClose }) => {
     >
       {/* Popup Content */}
       <div
-        className="relative flex flex-col w-[350px] h-full bg-white shadow-xl p-6 overflow-y-auto">
+        className="relative flex flex-col w-[350px] h-full bg-white shadow-xl p-6 overflow-y-auto"
+        onClick={(event) => event.stopPropagation()} // מונע סגירה על לחיצה בתוך הפופאפ
+      >
         {/* Close Button */}
         <button
           onClick={onClose}

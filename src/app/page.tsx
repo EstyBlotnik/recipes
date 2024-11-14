@@ -57,7 +57,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="text-5xl m-5">
+      <div className="m-5">
       <Header
         onSearchChange={setSearch}
         onCategoryChange={setCategory}
