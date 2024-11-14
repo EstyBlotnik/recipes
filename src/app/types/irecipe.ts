@@ -2,22 +2,11 @@ import { Document } from "mongoose";
 import { z } from 'zod';
 
 export const arrCategory = [
-    'other',
-    "Vegan",
+    "Other",
     "Gluten-Free",
     "Dessert",
-    "Vegetarian",
-    "Low Carb",
-    "Paleo",
-    "Keto",
-    "Dairy-Free",
-    "Nut-Free",
-    "Quick & Easy",
     "Healthy",
-    "Appetizer",
     "Main Course",
-    "Side Dish",
-    "Soup",
     "Salad",
     "Beverage",
     "Breakfast",
