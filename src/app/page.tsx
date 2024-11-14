@@ -2,8 +2,9 @@
 import RecipesGrid from "./components/RecipesGrid";
 import Header from "./components/Header";
 import React, { useState } from "react";
-import {useRecipes } from "@/app/hooks/useQuery";
+import { useRecipes } from "@/app/hooks/useQuery";
 import { useMemo } from "react";
+import RecipeNotFound from "./components/RecipeNotFound";
 
 
 const useFilteredRecipes = (
@@ -14,7 +15,7 @@ const useFilteredRecipes = (
   const { data: recipes, isLoading, isError, error } = useRecipes();
 
   // סינון המתכונים לפי חיפש טקסט, קטגוריה ו-favorite
-  const filteredRecipes = useMemo(() => { 
+  const filteredRecipes = useMemo(() => {
     if (!recipes) return [];
 
     return recipes.filter((recipe) => {
@@ -50,21 +51,24 @@ export default function Home() {
   if (isLoading) return (<div className="flex flex-col items-center justify-center min-h-screen">
     <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
     <p className="mt-4 text-lg text-gray-700">
-    Delicious recipes will be presented to you soon...🤤
+      Delicious recipes will be presented to you soon...🤤
     </p>
-  </div> )
+  </div>)
   if (isError) return <div>Error: {error?.message}</div>;
 
   return (
     <div>
       <div className="m-5">
-      <Header
-        onSearchChange={setSearch}
-        onCategoryChange={setCategory}
-        onFavoriteToggle={() => setFavorite(!favorite)}
-      />
-        <RecipesGrid arrayRecipes={data} />
-      </div>
+        <Header
+          onSearchChange={setSearch}
+          onCategoryChange={setCategory}
+          onFavoriteToggle={() => setFavorite(!favorite)}
+        />
+        {data.length === 0 ? (
+          <RecipeNotFound />
+        ) : (
+          <RecipesGrid arrayRecipes={data} />
+        )}      </div>
     </div>
   );
 };
