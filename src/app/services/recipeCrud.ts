@@ -1,7 +1,7 @@
 import axios from "axios";
 import { RecipeType, RecipeTypeWithId } from "@/app/types/irecipe";
 
-const apiUrl = "http://localhost:3000/api/";
+const apiUrl = "/api/";
 
 export const fetchAllRecipes = async (): Promise<RecipeTypeWithId[]> => {
   try {

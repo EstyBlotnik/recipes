@@ -50,7 +50,7 @@ export default function Home() {
   if (isLoading) return (<div className="flex flex-col items-center justify-center min-h-screen">
     <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
     <p className="mt-4 text-lg text-gray-700">
-      Delicious recipes will be presented to you soon...🤤
+    Delicious recipes will be presented to you soon...🤤
     </p>
   </div> )
   if (isError) return <div>Error: {error?.message}</div>;
