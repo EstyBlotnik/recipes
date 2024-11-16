@@ -1,6 +1,8 @@
 import mongoose from "mongoose"
 const MONGODB_URI = process.env.MONGO_URI || "";
 let isConnected: boolean = false;
+
+export const dynamic = 'force-dynamic';
 const connect = async () => {
     if (isConnected) {
         console.log("already connected!");
