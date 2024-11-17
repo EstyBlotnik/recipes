@@ -37,6 +37,7 @@ const Navbar: React.FC<NavbarProps> = ({
   };
 
   const toggleFavorites = () => {
+    setPageNumber(1);
     const newActiveTab = activeTab === "all" ? "favorites" : "all";
     setActiveTab(newActiveTab);
     onFavoriteToggle(newActiveTab === "favorites");
