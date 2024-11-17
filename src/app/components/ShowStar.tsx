@@ -1,10 +1,7 @@
 import React from 'react'
 
-interface ShowStarProps {
-    star: boolean
-}
 
-const ShowStar = ({ star }: ShowStarProps) => {
+const ShowStar = ({ star }: { star: boolean }) => {
     return (
         <>
             {star ?

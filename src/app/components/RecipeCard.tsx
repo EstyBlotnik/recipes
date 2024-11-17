@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Star from '@/app/components/Star';
-// import Image from 'next/image'
 import { RecipeTypeWithId } from "@/app/types/irecipe"
 import RecipePopUp from './RecipePopUp';
 import { useRecipeContecst } from '@/app/hooks/useRecipeContects';
@@ -16,16 +15,10 @@ const RecipeCard = () => {
     return (
         <div className='h-full'>
             <div className='h-full'>
+
                 {/* Image Container */}
                 <div className="relative h-40 overflow-hidden w-full sm:w-56">
                     <Image imageUrl={recipe.img} width={600} />
-                    {/* <Image
-                        src={recipe.img}
-                        alt={recipe.name}
-                        width={200}
-                        height={200}
-                        className="w-full object-cover"
-                    /> */}
                 </div>
 
                 {/* Content Container */}
@@ -55,7 +48,6 @@ const RecipeCard = () => {
                         Read more
                     </button>
                 </div>
-
 
             </div>
             <div className='bg-slate-500'>

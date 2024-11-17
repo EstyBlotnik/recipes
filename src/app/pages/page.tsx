@@ -67,7 +67,7 @@ export default function Home() {
             onFavoriteToggle={() => setFavorite(!favorite)}
           />
           {data.length === 0 ? (
-            <RecipeNotFound />
+            <RecipeNotFound message={"No recipes match your criteria"} />
           ) : (
             <RecipesGrid arrayRecipes={data} />
           )}{" "}
