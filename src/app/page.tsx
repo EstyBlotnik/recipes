@@ -6,7 +6,7 @@ const page = () => {
   return (
     
     <ConnectingModal/>
-    </div>
+
   )
 }
 
