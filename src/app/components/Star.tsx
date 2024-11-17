@@ -10,7 +10,6 @@ const Star = () => {
   const recipe: RecipeTypeWithId = useRecipeContecst();
   const queryClient = useQueryClient();
 
-
   const mutation = useMutation({
     mutationFn: (newFavorite:boolean) => updateFavorite(recipe._id, newFavorite),
     onSuccess: () => {

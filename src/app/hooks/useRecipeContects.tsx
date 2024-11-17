@@ -4,11 +4,12 @@ import { createContext, useContext } from 'react';
 import { RecipeContext } from "@/app/components/RecipesGrid";
 import { RecipeTypeWithId } from '../types/irecipe';
 
+// ההוק usePageNumber מספק גישה לערכים של מספר העמוד הנוכחי
+//  ופונקציה לעדכונו מתוך PageNumberContext.
 export const PageNumberContext = createContext<{
   pageNumber: number;
   setPageNumber: React.Dispatch<React.SetStateAction<number>>;
 } | null>(null);
-
 
 export const usePageNumber = () => {
   const context = useContext(PageNumberContext);
@@ -19,6 +20,7 @@ export const usePageNumber = () => {
 };
 
 
+// ההוק useRecipeContecst מספק גישה למידע של מתכון בודד מתוך RecipeContext.
 export const useRecipeContecst = (): RecipeTypeWithId => {
   const context = useContext(RecipeContext);
 
@@ -26,5 +28,5 @@ export const useRecipeContecst = (): RecipeTypeWithId => {
     throw new Error(" Must be used within a RecipeProvider");
   }
 
-  return context; // context לא יכול להיות null עכשיו
+  return context;
 };
