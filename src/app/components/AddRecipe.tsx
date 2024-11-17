@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 import Link from "next/link";
 import { useQueryClient } from "@tanstack/react-query";
+import { usePageNumber } from "../hooks/useRecipeContects";
 
 const AddRecipe = () => {
   const [formData, setFormData] = useState<RecipeType>({
@@ -20,6 +21,7 @@ const AddRecipe = () => {
     favorite: false,
   });
   const { data } = useCategories();
+  const {setPageNumber } = usePageNumber();
   console.log("categoris:");
   console.log(data);
 
@@ -73,6 +75,7 @@ const AddRecipe = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setPageNumber(1);
 
     // ביצוע ולידציה באמצעות Zod
     const validationResult = recipeSchemaZod.safeParse(formData);
