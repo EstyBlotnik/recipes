@@ -45,17 +45,8 @@ export default function Home() {
   const [favorite, setFavorite] = useState<boolean>(false);
   // const [pageNumber, setPageNumber] = useState(1);
 
-<<<<<<< HEAD
   const { data, isLoading, isError, error } = useFilteredRecipes(search, category, favorite);
-  // console.log("all data", data)
-=======
-  const { data, isLoading, isError, error } = useFilteredRecipes(
-    search,
-    category,
-    favorite
-  );
   console.log("all data", data);
->>>>>>> 6151dbd89251b47d5300b9c15f080e01823b5bbe
 
   if (isLoading)
     return (
