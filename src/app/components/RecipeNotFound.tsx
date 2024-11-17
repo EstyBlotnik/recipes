@@ -1,11 +1,7 @@
-// RecipeNotFound.tsx
 import React from 'react';
 
-interface RecipeNotFoundProps {
-  message?: string;
-}
 
-const RecipeNotFound: React.FC<RecipeNotFoundProps> = ({ message }) => {
+const RecipeNotFound = ({ message }: { message: string }) => {
   return (
     <div className="flex flex-col items-center justify-center p-4 bg-gray-50 rounded-lg shadow-md h-80">
       <div className="text-5xl mb-4">🍽️</div>

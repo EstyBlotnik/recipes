@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePageNumber } from "../hooks/useRecipeContects";
 
+
 const AddRecipe = () => {
   const [formData, setFormData] = useState<RecipeType>({
     name: "",
@@ -21,7 +22,7 @@ const AddRecipe = () => {
     favorite: false,
   });
   const { data } = useCategories();
-  const {setPageNumber } = usePageNumber();
+  const { setPageNumber } = usePageNumber();
   console.log("categoris:");
   console.log(data);
 
@@ -96,7 +97,7 @@ const AddRecipe = () => {
       try {
         addarecipe(formData);
         //עדכון הcash 
-        queryClient.invalidateQueries({queryKey: ["recipes"]});
+        queryClient.invalidateQueries({ queryKey: ["recipes"] });
 
         toast.success("המתכון נוסף בהצלחה!", {
           onClose: () => router.push("/"), // ניתוב לדף הבית לאחר סגירת ההודעה

@@ -1,14 +1,10 @@
 "use client";
 import React, { useEffect } from "react";
 import "@/app/globals.css";
-import { RecipeTypeWithId } from "../types/irecipe";
+import { PopUpProps } from "../types/props";
 import Image from "./Image";
 import Star from "./Star";
 
-interface PopUpProps {
-  recipe: RecipeTypeWithId;
-  onClose: () => void; // Callback to close the popup
-}
 
 const RecipePopUp: React.FC<PopUpProps> = ({ recipe, onClose }) => {
   useEffect(() => {
@@ -38,7 +34,7 @@ const RecipePopUp: React.FC<PopUpProps> = ({ recipe, onClose }) => {
         </button>
 
         {/* Recipe Content */}
-        <div className= "p-4">
+        <div className="p-4">
           <div className="flex flex-col justify-center items-center pt-12 w-full">
             <h3 className="text-xl font-bold text-gray-900 mb-2">
               {recipe.name}

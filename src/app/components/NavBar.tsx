@@ -3,12 +3,8 @@ import React, { useState } from "react";
 import { SearchIcon } from "@heroicons/react/outline";
 import { useCategories } from "@/app/hooks/useQuery";
 import { usePageNumber } from "../hooks/useRecipeContects";
+import { NavbarProps } from "@/app/types/props"
 
-interface NavbarProps {
-  onSearchChange: (value: string) => void;
-  onCategoryChange: (value: string) => void;
-  onFavoriteToggle: (isFavorite: boolean) => void;
-}
 
 const Navbar: React.FC<NavbarProps> = ({
   onSearchChange,
@@ -21,7 +17,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
   const { data: categories } = useCategories();
   const { setPageNumber } = usePageNumber();
-  
+
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setPageNumber(1);
     const value = e.target.value;
@@ -80,8 +76,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
       <div className="flex space-x-6 mt-6">
         <button
-          className={`text-lg ${
-            activeTab === "all"
+          className={`text-lg ${activeTab === "all"
               ? "border-b-2 border-gray-800"
               : "border-b-2 border-transparent"
             } pb-1 hover:border-b-2 hover:border-gray-400`}
@@ -93,8 +88,7 @@ const Navbar: React.FC<NavbarProps> = ({
           All Recipes
         </button>
         <button
-          className={`text-lg ${
-            activeTab === "favorites"
+          className={`text-lg ${activeTab === "favorites"
               ? "border-b-2 border-gray-800"
               : "border-b-2 border-transparent"
             } pb-1 hover:border-b-2 hover:border-gray-400`}
