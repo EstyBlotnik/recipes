@@ -32,7 +32,7 @@ export const getCategories = async () => {
 
 export const addarecipe = async (formData: RecipeType) => {
   try {
-    const response = await axios.post(apiUrl, formData);
+    const response = await axios.post(`${apiUrl}recipePost`, formData);
     return response.data;
   } catch (error) {
     console.error("Error adding recipe:", error);

@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 const MONGODB_URI = process.env.MONGO_URI || "";
 let isConnected: boolean = false;
+
 const connect = async () => {
     if (isConnected) {
         console.log("already connected!");

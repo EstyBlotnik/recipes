@@ -1,24 +1,34 @@
 "use client"
 
-import { RecipeTypeWithId, RecipesProps } from "@/app/types/irecipe";
+import { RecipeTypeWithId } from "@/app/types/irecipe";
+import { RecipesProps } from "@/app/types/props";
 import RecipeCard from "@/app/components/RecipeCard"
-import { createContext, useState } from 'react';
+import { createContext } from 'react';
+import { usePageNumber } from "../hooks/useRecipeContects";
 
 export const RecipeContext = createContext<RecipeTypeWithId | null>(null);
 
-const ITEMS_IN_PAGE = 20;
+const ITEMS_IN_PAGE = 10;
 
 export default function RecipeGrid({arrayRecipes}:RecipesProps) {
 
-  const [pageNumber, setPageNumber] = useState(1);
+ 
+
+  
+  // const [pageNumber, setPageNumber] = useState(1);
+  const { pageNumber, setPageNumber } = usePageNumber();
   const totalPages = Math.ceil(arrayRecipes.length / ITEMS_IN_PAGE);
+
+  
 
   const pagePagination = () => {
     const indexBegins = ITEMS_IN_PAGE * (pageNumber -1);
-    
     return arrayRecipes.slice(indexBegins, indexBegins + ITEMS_IN_PAGE);
-
   }
+
+
+ 
+  
 
   return (
 
