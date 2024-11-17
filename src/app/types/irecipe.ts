@@ -33,15 +33,10 @@ export default interface irecipe extends Document {
     instructions: string;
     favorite: boolean;
 }
-// export interface ITicket extends Document, TicketType {}
+// export interface irecipe extends Document, TicketType {}
 
-// מתכון TYPE 
 export type RecipeType = z.infer<typeof recipeSchemaZod> 
 
 export type RecipeTypeWithId = z.infer<typeof recipeSchemaZod> & {
     _id: string;
 };
-
-export interface RecipesProps {
-    arrayRecipes: RecipeTypeWithId[];
-}
