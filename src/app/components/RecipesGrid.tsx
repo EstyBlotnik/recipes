@@ -2,7 +2,7 @@
 
 import { RecipeTypeWithId, RecipesProps } from "@/app/types/irecipe";
 import RecipeCard from "@/app/components/RecipeCard"
-import { createContext, useEffect } from 'react';
+import { createContext } from 'react';
 import { usePageNumber } from "../hooks/useRecipeContects";
 
 export const RecipeContext = createContext<RecipeTypeWithId | null>(null);
@@ -26,9 +26,7 @@ export default function RecipeGrid({arrayRecipes}:RecipesProps) {
   }
 
 
-  useEffect(() => {
-    // setPageNumber(1);
-  }, [arrayRecipes]);
+ 
   
 
   return (
