@@ -47,6 +47,7 @@ export default function Home() {
   const [favorite, setFavorite] = useState<boolean>(false);
 
   const { data, isLoading, isError, error } = useFilteredRecipes(search, category, favorite);
+  console.log("all data", data)
 
   if (isLoading) return (<div className="flex flex-col items-center justify-center min-h-screen">
     <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
