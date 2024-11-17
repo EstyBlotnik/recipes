@@ -1,10 +1,12 @@
 "use client";
 import RecipesGrid from "@/app/components/RecipesGrid";
 import Header from "@/app/components/Header";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecipes } from "@/app/hooks/useQuery";
 import { useMemo } from "react";
+import { useRouter } from "next/navigation";
 import RecipeNotFound from "@/app/components/RecipeNotFound";
+import { fetchProtectedData } from "@/app/services/userCrud"
 
 
 const useFilteredRecipes = (
@@ -47,6 +49,23 @@ export default function Home() {
   const { data, isLoading, isError, error } = useFilteredRecipes(search, category, favorite);
   console.log("all data", data);
 
+  const router = useRouter()
+
+  // Protected Data
+  useEffect(() => {
+
+    const x = async () => {
+      debugger
+      const data = await fetchProtectedData()
+      console.log(data)
+      if (!data) {
+        router.push("/");
+      }
+    }
+    
+    x()
+  }, [])
+
   if (isLoading)
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
@@ -59,19 +78,19 @@ export default function Home() {
   if (isError) return <div>Error: {error?.message}</div>;
 
   return (
-      <div>
-        <div className="m-5">
-          <Header
-            onSearchChange={setSearch}
-            onCategoryChange={setCategory}
-            onFavoriteToggle={() => setFavorite(!favorite)}
-          />
-          {data.length === 0 ? (
-            <RecipeNotFound message={"No recipes match your criteria"} />
-          ) : (
-            <RecipesGrid arrayRecipes={data} />
-          )}{" "}
-        </div>
+    <div>
+      <div className="m-5">
+        <Header
+          onSearchChange={setSearch}
+          onCategoryChange={setCategory}
+          onFavoriteToggle={() => setFavorite(!favorite)}
+        />
+        {data.length === 0 ? (
+          <RecipeNotFound message={"No recipes match your criteria"} />
+        ) : (
+          <RecipesGrid arrayRecipes={data} />
+        )}{" "}
       </div>
+    </div>
   );
 }
