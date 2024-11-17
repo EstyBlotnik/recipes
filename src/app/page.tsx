@@ -1,10 +1,11 @@
 'use client'
 import RecipesGrid from "./components/RecipesGrid";
 import Header from "./components/Header";
-import React, { useState } from "react";
+import React, {useState } from "react";
 import { useRecipes } from "@/app/hooks/useQuery";
 import { useMemo } from "react";
 import RecipeNotFound from "./components/RecipeNotFound";
+import { PageNumberContext } from "./hooks/useRecipeContects";
 
 
 const useFilteredRecipes = (
@@ -45,6 +46,7 @@ export default function Home() {
   const [search, setSearch] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [favorite, setFavorite] = useState<boolean>(false);
+  const [pageNumber,setPageNumber] = useState(1);
 
   const { data, isLoading, isError, error } = useFilteredRecipes(search, category, favorite);
   console.log("all data", data)
@@ -58,6 +60,7 @@ export default function Home() {
   if (isError) return <div>Error: {error?.message}</div>;
 
   return (
+    <PageNumberContext.Provider value={{ pageNumber, setPageNumber }}>
     <div>
       <div className="m-5">
         <Header
@@ -71,5 +74,6 @@ export default function Home() {
           <RecipesGrid arrayRecipes={data} />
         )}      </div>
     </div>
+    </PageNumberContext.Provider>
   );
 };

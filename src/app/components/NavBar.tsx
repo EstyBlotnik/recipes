@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { SearchIcon } from "@heroicons/react/outline";
 import { useCategories } from "@/app/hooks/useQuery";
+import { usePageNumber } from "../hooks/useRecipeContects";
 
 interface NavbarProps {
   onSearchChange: (value: string) => void;
@@ -19,14 +20,17 @@ const Navbar: React.FC<NavbarProps> = ({
   const [search, setSearch] = useState<string>("");
 
   const { data: categories } = useCategories();
-
+  const { setPageNumber } = usePageNumber();
+  
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setPageNumber(1);
     const value = e.target.value;
     setSelectedCategory(value);
     onCategoryChange(value);
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPageNumber(1);
     const value = e.target.value;
     setSearch(value);
     onSearchChange(value);
