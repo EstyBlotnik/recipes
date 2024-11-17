@@ -10,6 +10,7 @@ const ImageResizer: React.FC<ImageResizerProps> = ({ imageUrl, width }) => {
     if (!imageUrl) return;
     const img = new Image();
     img.crossOrigin = 'anonymous'; // או 'use-credentials' בהתאם להגדרות ה-CORS של השרת
+    console.log("היתה בעיה בהתחברות. נסה שוב.");
 
     img.src = imageUrl;
     img.onload = () => {
