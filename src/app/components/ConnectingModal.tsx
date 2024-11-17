@@ -66,7 +66,7 @@ const ConnectingModal = () => {
             <p className="text-red-600 text-xs">{error}</p>
           <button
             type="submit"
-            className="w-full mt-3 bg-indigo-600 text-white py-1.5 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-indigo-500 text-sm"
+            className="w-full mt-3 bg-purple-500 text-white py-1.5 rounded-md hover:bg-purple-400 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-indigo-500 text-sm"
           >
             Submit
 
