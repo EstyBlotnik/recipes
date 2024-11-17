@@ -1,11 +1,11 @@
-'use client'
+"use client";
 import RecipesGrid from "./components/RecipesGrid";
 import Header from "./components/Header";
 import React, { useState } from "react";
 import { useRecipes } from "@/app/hooks/useQuery";
 import { useMemo } from "react";
 import RecipeNotFound from "./components/RecipeNotFound";
-
+// import { PageNumberContext } from "./hooks/useRecipeContects";
 
 const useFilteredRecipes = (
   search: string,
@@ -19,7 +19,6 @@ const useFilteredRecipes = (
     if (!recipes) return [];
 
     return recipes.filter((recipe) => {
-
       // סינון לפי חיפוש בטקסט
       const matchesSearch = search
         ? recipe.name.toLowerCase().includes(search.toLowerCase())
@@ -40,35 +39,42 @@ const useFilteredRecipes = (
   return { data: filteredRecipes, isLoading, isError, error };
 };
 
-
 export default function Home() {
   const [search, setSearch] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [favorite, setFavorite] = useState<boolean>(false);
+  // const [pageNumber, setPageNumber] = useState(1);
 
   const { data, isLoading, isError, error } = useFilteredRecipes(search, category, favorite);
+  console.log("all data", data);
 
-  if (isLoading) return (<div className="flex flex-col items-center justify-center min-h-screen">
-    <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-    <p className="mt-4 text-lg text-gray-700">
-      Delicious recipes will be presented to you soon...🤤
-    </p>
-  </div>)
+  if (isLoading)
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <p className="mt-4 text-lg text-gray-700">
+          Delicious recipes will be presented to you soon...🤤
+        </p>
+      </div>
+    );
   if (isError) return <div>Error: {error?.message}</div>;
 
   return (
-    <div>
-      <div className="m-5">
-        <Header
-          onSearchChange={setSearch}
-          onCategoryChange={setCategory}
-          onFavoriteToggle={() => setFavorite(!favorite)}
-        />
-        {data.length === 0 ? (
-          <RecipeNotFound />
-        ) : (
-          <RecipesGrid arrayRecipes={data} />
-        )}      </div>
-    </div>
+    // <PageNumberContext.Provider value={{ pageNumber, setPageNumber }}>
+      <div>
+        <div className="m-5">
+          <Header
+            onSearchChange={setSearch}
+            onCategoryChange={setCategory}
+            onFavoriteToggle={() => setFavorite(!favorite)}
+          />
+          {data.length === 0 ? (
+            <RecipeNotFound />
+          ) : (
+            <RecipesGrid arrayRecipes={data} />
+          )}{" "}
+        </div>
+      </div>
+    // </PageNumberContext.Provider>
   );
-};
+}

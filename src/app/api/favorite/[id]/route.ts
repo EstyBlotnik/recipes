@@ -1,8 +1,8 @@
+export const dynamic = 'force-dynamic';
+
 import connect from "@/app/lib/db/mongoDB";
 import Recipe from "@/app/lib/models/recipe";
 import { NextRequest, NextResponse } from "next/server";
-
-
 
 export async function PUT(req: NextRequest, {params}: {params:{id:string}}) {
     try{
