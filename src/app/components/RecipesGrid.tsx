@@ -1,6 +1,7 @@
 "use client"
 
-import { RecipeTypeWithId, RecipesProps } from "@/app/types/irecipe";
+import { RecipeTypeWithId } from "@/app/types/irecipe";
+import { RecipesProps } from "@/app/types/props";
 import RecipeCard from "@/app/components/RecipeCard"
 import { createContext } from 'react';
 import { usePageNumber } from "../hooks/useRecipeContects";

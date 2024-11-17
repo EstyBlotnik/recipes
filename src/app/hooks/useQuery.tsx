@@ -4,7 +4,6 @@ import { fetchAllRecipes } from "../services/recipeCrud";
 import {getCategories} from '@/app/services/recipeCrud'
 
 
-
 export const useRecipes = () => {
     return useQuery<RecipeTypeWithId[], Error>({
       queryKey: ["recipes"],

@@ -1,6 +1,5 @@
 export const dynamic = 'force-dynamic';
 
-
 import { NextResponse } from "next/server";
 import connect from "@/app/lib/db/mongoDB";
 import Recipe from "@/app/lib/models/recipe";
@@ -26,5 +25,3 @@ export async function GET() {
     }
   }
 }
-
-//dd
