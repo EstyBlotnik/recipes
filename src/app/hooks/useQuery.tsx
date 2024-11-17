@@ -9,7 +9,7 @@ export const useRecipes = () => {
     return useQuery<RecipeTypeWithId[], Error>({
       queryKey: ["recipes"],
       queryFn: fetchAllRecipes, 
-      staleTime: 1000 * 60 * 60 * 24,
+      staleTime: 0,
     });
   };
   export const useCategories = () => {
